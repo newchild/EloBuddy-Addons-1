@@ -73,7 +73,7 @@
                     Chat.Say("/t");
                     break;
                 case 2:
-                    Chat.Say("/j");
+                    Player.DoEmote(1);
                     break;
                 case 3:
                     Chat.Say("/masterybadge");

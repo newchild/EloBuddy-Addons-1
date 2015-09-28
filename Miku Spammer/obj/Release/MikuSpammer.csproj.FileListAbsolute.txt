@@ -1,0 +1,9 @@
+C:\Users\Aaron\Documents\LeagueSharp\Miku Spammer\obj\Release\MikuSpammer.csprojResolveAssemblyReference.cache
+C:\Users\Aaron\Documents\LeagueSharp\Miku Spammer\bin\Release\SharpDX.dll
+C:\Users\Aaron\Documents\LeagueSharp\Miku Spammer\bin\Release\SharpDX.Direct3D9.dll
+C:\Users\Aaron\Documents\LeagueSharp\Miku Spammer\bin\Release\Newtonsoft.Json.dll
+C:\Users\Aaron\Documents\LeagueSharp\Miku Spammer\bin\Release\EmoteSpammer.exe.config
+C:\Users\Aaron\Documents\LeagueSharp\Miku Spammer\bin\Release\EmoteSpammer.exe
+C:\Users\Aaron\Documents\LeagueSharp\Miku Spammer\bin\Release\EmoteSpammer.pdb
+C:\Users\Aaron\Documents\LeagueSharp\Miku Spammer\obj\Release\EmoteSpammer.exe
+C:\Users\Aaron\Documents\LeagueSharp\Miku Spammer\obj\Release\EmoteSpammer.pdb

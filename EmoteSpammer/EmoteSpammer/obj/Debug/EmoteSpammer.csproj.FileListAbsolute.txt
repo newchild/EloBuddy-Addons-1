@@ -1,1 +1,11 @@
 C:\Users\Aaron\Documents\EloBuddy-Addons\EmoteSpammer\EmoteSpammer\bin\Debug\EmoteSpammer.exe.config
+C:\Users\Aaron\Documents\EloBuddy-Addons\EmoteSpammer\EmoteSpammer\obj\Debug\EmoteSpammer.csprojResolveAssemblyReference.cache
+C:\Users\Aaron\Documents\EloBuddy-Addons\EmoteSpammer\EmoteSpammer\bin\Debug\EmoteSpammer.exe
+C:\Users\Aaron\Documents\EloBuddy-Addons\EmoteSpammer\EmoteSpammer\bin\Debug\EmoteSpammer.pdb
+C:\Users\Aaron\Documents\EloBuddy-Addons\EmoteSpammer\EmoteSpammer\bin\Debug\EloBuddy.dll
+C:\Users\Aaron\Documents\EloBuddy-Addons\EmoteSpammer\EmoteSpammer\bin\Debug\EloBuddy.SDK.dll
+C:\Users\Aaron\Documents\EloBuddy-Addons\EmoteSpammer\EmoteSpammer\bin\Debug\SharpDX.dll
+C:\Users\Aaron\Documents\EloBuddy-Addons\EmoteSpammer\EmoteSpammer\bin\Debug\SharpDX.Direct3D9.dll
+C:\Users\Aaron\Documents\EloBuddy-Addons\EmoteSpammer\EmoteSpammer\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Aaron\Documents\EloBuddy-Addons\EmoteSpammer\EmoteSpammer\obj\Debug\EmoteSpammer.exe
+C:\Users\Aaron\Documents\EloBuddy-Addons\EmoteSpammer\EmoteSpammer\obj\Debug\EmoteSpammer.pdb
