@@ -33,10 +33,10 @@
             Emote.AddGroupLabel("Spam a secleted emote");
             Emote.AddLabel("Mastery spam requires level 4+ on the champion to use!");
             Emote.AddLabel("Spamming emotes will reduce orbwalker efficency!");
-            var EmoteSpamList = Emote.Add("Emote Spamming", new Slider("EmoteList", 0, 0, 3));
+            var EmoteSpamList = Emote.Add("Emote Spamming", new Slider("EmoteList", 0, 0, 4));
             EmoteSpamList.OnValueChange += delegate
             {
-                EmoteSpamList.DisplayName = "Spamming " + new[] { "Laugh", "Taunt", "Joke", "Mastery" }
+                EmoteSpamList.DisplayName = "Spamming " + new[] { "Laugh", "Taunt", "Joke","Dance", "Mastery" }
                 [EmoteSpamList.CurrentValue];
             };
             Emote.Add("EmotePressHotkey", new KeyBind("Press To Spam", false, KeyBind.BindTypes.HoldActive, 'T'));
@@ -67,16 +67,19 @@
             switch (Emote["Emote Spamming"].Cast<Slider>().CurrentValue)
             {
                 case 0:
-                    Chat.Say("/l");
+                    Player.DoEmote(EloBuddy.Emote.Laugh);
                     break;
                 case 1:
-                    Chat.Say("/t");
+                    Player.DoEmote(EloBuddy.Emote.Taunt);
                     break;
                 case 2:
-                    Player.DoEmote(1);
+                    Player.DoEmote(EloBuddy.Emote.Joke);
                     break;
                 case 3:
-                    Chat.Say("/masterybadge");
+                    Player.DoEmote(EloBuddy.Emote.Dance);
+                    break;
+                case 4:
+                    Player.DoEmote(EloBuddy.Emote.Toggle);
                     break;
             }
         }
