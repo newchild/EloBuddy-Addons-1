@@ -14,7 +14,6 @@ namespace Spammer
     {
         private static string all = "";
         public static Menu Menu, Miku, Radi, Emote, Hotkeys;
-
         private static void Main(string[] args)
         {
             Loading.OnLoadingComplete += Game_OnStart;
@@ -68,10 +67,10 @@ namespace Spammer
             Emote.AddGroupLabel("Spam a secleted emote");
             Emote.AddLabel("Mastery spam requires level 4+ on the champion to use!");
             Emote.AddLabel("Spamming emotes will reduce orbwalker efficency!");
-            var EmoteSpamList = Emote.Add("Emote Spamming", new Slider("EmoteList", 0, 0, 3));
+            var EmoteSpamList = Emote.Add("Emote Spamming", new Slider("EmoteList", 0, 0, 4));
             EmoteSpamList.OnValueChange += delegate
             {
-                EmoteSpamList.DisplayName = "Spamming " + new[] { "Laugh", "Taunt", "Joke", "Mastery" }
+                EmoteSpamList.DisplayName = "Spamming " + new[] { "Laugh", "Taunt", "Joke", "Dance", "Mastery"}
                 [EmoteSpamList.CurrentValue];
             };
             Emote.Add("EmotePressHotkey", new KeyBind("Press To Spam", false, KeyBind.BindTypes.HoldActive, 'T'));
@@ -82,7 +81,7 @@ namespace Spammer
             Hotkeys.AddGroupLabel("Enable Spammers");
             Hotkeys.Add("Enable MikuSpammer?", new CheckBox("Enable MikuSpammer?"));
             Hotkeys.Add("Enable RadiSpammer?", new CheckBox("Enable RadiSpammer?", false));
-            Hotkeys.Add("Enable EmoteSpammer", new CheckBox("Enable Emotespammer?"));
+            Hotkeys.Add("Enable EmoteSpammer?", new CheckBox("Enable Emotespammer?"));
             Hotkeys.AddSeparator();
             Hotkeys.AddGroupLabel("MikuSpammer");
             Hotkeys.Add("MikuPressHotkey", new KeyBind("Press To Spam", false, KeyBind.BindTypes.HoldActive, 'A'));
@@ -133,20 +132,23 @@ namespace Spammer
 
         public static void EmoteSpam()
         {
-
+            
             switch (Emote["Emote Spamming"].Cast<Slider>().CurrentValue)
             {
                 case 0:
-                    Chat.Say("/l");
+                    Player.DoEmote(EloBuddy.Emote.Laugh);
                     break;
                 case 1:
-                    Chat.Say("/t");
+                    Player.DoEmote(EloBuddy.Emote.Taunt);
                     break;
                 case 2:
-                    Chat.Say("/j");
+                    Player.DoEmote(EloBuddy.Emote.Joke);
                     break;
                 case 3:
-                    Chat.Say("/masterybadge");
+                    Player.DoEmote(EloBuddy.Emote.Dance);
+                    break;
+                case 4:
+                    Player.DoEmote(EloBuddy.Emote.Toggle);
                     break;
             }
         }
@@ -177,13 +179,13 @@ namespace Spammer
                     Chat.Say(all + "I'm the most HQ here");
                     break;
                 case 5:
-                    Chat.Say(all + "Nein!");
+                    Chat.Say(all + "Urmum was banned when i cem'd her!");
                     break;
                 case 6:
                     Chat.Say(all + "Me encanta patatas fritas <3");
                     break;
                 case 7:
-                    Chat.Say(all + "wub");
+                    Chat.Say(all + "Wub");
                     break;
                 case 8:
                     Chat.Say(all + "STFU no one cares");
@@ -230,60 +232,47 @@ namespace Spammer
             }
         }
 
-
-
-
-
-
-
-    
-
-
-    private static void RadiSpam()
-    {
-        if (Hotkeys["All Chat On Radi"].Cast<CheckBox>().CurrentValue)
+        private static void RadiSpam()
         {
-            all = "/all ";
-        }
-        else all = "";
+            if (Hotkeys["All Chat On Radi"].Cast<CheckBox>().CurrentValue)
+            {
+                all = "/all ";
+            }
+            else all = "";
 
-        switch (Radi["Radi Spamming"].Cast<Slider>().CurrentValue)
-        {
-            case 0:
-                Chat.Say(all + "Fuck off you fucking jew");
-                break;
-            case 1:
-                Chat.Say(all + "Fuck off and get cancer");
-                break;
-            case 2:
-                Chat.Say(all + "Kurwa Kurwa Kurwa");
-                break;
-            case 3:
-                Chat.Say(all + "I get more pizda than you, you fucking pizda");
-                break;
-            case 4:
-                Chat.Say(all + "Suka");
-                break;
-            case 5:
-                Chat.Say(all + "Suck my dick");
-                break;
-            case 6:
-                Chat.Say(all + "Are you fucking retarded?");
-                break;
-            case 7:
-                Chat.Say(all + "Jerk off kid!");
-                break;
-            case 8:
-                Chat.Say(all + "Kurwa mid or feed ja perdole");
-                break;
-
-            default:
-                Chat.Say("");
-                break;
+            switch (Radi["Radi Spamming"].Cast<Slider>().CurrentValue)
+            {
+                case 0:
+                    Chat.Say(all + "Fuck off you fucking jew");
+                    break;
+                case 1:
+                    Chat.Say(all + "Fuck off and get cancer");
+                    break;
+                case 2:
+                    Chat.Say(all + "Kurwa Kurwa Kurwa");
+                    break;
+                case 3:
+                    Chat.Say(all + "I get more pizda than you, you fucking pizda");
+                    break;
+                case 4:
+                    Chat.Say(all + "Suka");
+                    break;
+                case 5:
+                    Chat.Say(all + "Suck my dick");
+                    break;
+                case 6:
+                    Chat.Say(all + "Are you fucking retarded?");
+                    break;
+                case 7:
+                    Chat.Say(all + "Jerk off kid!");
+                    break;
+                case 8:
+                    Chat.Say(all + "Kurwa mid or feed ja perdole");
+                    break;
+                default:
+                    Chat.Say("");
+                    break;
+            }
         }
     }
-
-
-
-}
 }
