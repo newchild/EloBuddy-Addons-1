@@ -1,6 +1,5 @@
 ﻿//Hola mi nombre es hadriiw and I sell accounts - Royals™
 
-using System.Security.Cryptography.X509Certificates;
 
 namespace Spammer
 {
@@ -13,7 +12,7 @@ namespace Spammer
     internal class Program
     {
         private static string all = "";
-        public static Menu Menu, Miku, Radi, Emote, Hotkeys;
+        public static Menu Menu, Miku, Radi, Emote, Hotkeys, Ascii;
         private static void Main(string[] args)
         {
             Loading.OnLoadingComplete += Game_OnStart;
@@ -25,7 +24,9 @@ namespace Spammer
         private static void Game_OnStart(EventArgs args)
         {
 
-            Chat.Print("Miku's Spammer Loaded, Good luck!");
+            Chat.Print("Miku's Spammer Loaded, Good luck!", System.Drawing.Color.Cyan);
+            Chat.Print("Kurwa Radi");
+            Chat.Say("");
             Menu = MainMenu.AddMenu("Spammer", "Spammer");
 
             Menu.AddGroupLabel("Miku's Global Spammer");
@@ -42,9 +43,14 @@ namespace Spammer
             var MikuSpamList = Miku.Add("Miku Spamming", new Slider("Miku Spam list", 0, 0, 19));
             MikuSpamList.OnValueChange += delegate
             {
-                MikuSpamList.DisplayName = "Spamming " + new[] { "Radi", "Miku", "Royals", "Killer", "Tim", "Sweden", "Taco", "Eldiath", "Dan", "Finn", "Oxide", "LostIt", "Broly", "Leva", "Pepe", "Akame", "Miro", "Porn", "Degrec", "Timmey" }
-                //"Ian", "Nathan", "Tahm", "Alfie", "Rhys" }
-                [MikuSpamList.CurrentValue];
+                MikuSpamList.DisplayName = "Spamming " + new[]
+                {
+                    "Radi", "Miku", "Royals", "Killer", "Tim", "Sweden",
+                    "Taco", "Eldiath", "Dan", "Finn", "Oxide", "LostIt",
+                    "Broly", "Leva", "Pepe", "Akame", "Miro", "Porn", "Degrec", "Timmey"
+                }
+                    //"Ian", "Nathan", "Tahm", "Alfie", "Rhys" }
+                    [MikuSpamList.CurrentValue];
 
             };
 
@@ -54,14 +60,30 @@ namespace Spammer
             var RadiSpamList = Radi.Add("Radi Spamming", new Slider("Radi Spam list", 0, 0, 8));
             RadiSpamList.OnValueChange += delegate
             {
-                RadiSpamList.DisplayName = "Spamming " + new[] {
-                    "Jew", "Cancer", "kurwa = fuck", "Pizda = pussy", "Suka = bitch", "Suck my dick ", "Retarded?", "jerk Off", "Mid Or feed" }
+                RadiSpamList.DisplayName = "Spamming " + new[]
+                {
+                    "Jew", "Cancer", "kurwa = fuck", "Pizda = pussy",
+                    "Suka = bitch", "Suck my dick ", "Retarded?", "jerk Off", "Mid Or feed"
+                }
 
-                [RadiSpamList.CurrentValue];
+                    [RadiSpamList.CurrentValue];
             };
 
 
+            Ascii = Menu.AddSubMenu("AsciiSpammer", "AsciiSpammer");
+            Ascii.AddGroupLabel("Spams all your favorite memes in ascii form!");
+            Ascii.AddGroupLabel("What to Spam?");
+            var AsciiSpamList = Ascii.Add("Ascii Spamming", new Slider("Ascii Spam List", 0, 0, 3));
 
+            AsciiSpamList.OnValueChange += delegate
+            {
+                AsciiSpamList.DisplayName = "Spamming " + new[]
+                {
+                    "Kappa", "Doge", "Hitler"
+                }
+
+                    [AsciiSpamList.CurrentValue];
+            };
 
             Emote = Menu.AddSubMenu("EmoteSpammer", "EmoteSpammer");
             Emote.AddGroupLabel("Spam a secleted emote");
@@ -82,6 +104,7 @@ namespace Spammer
             Hotkeys.Add("Enable MikuSpammer?", new CheckBox("Enable MikuSpammer?"));
             Hotkeys.Add("Enable RadiSpammer?", new CheckBox("Enable RadiSpammer?", false));
             Hotkeys.Add("Enable EmoteSpammer?", new CheckBox("Enable Emotespammer?"));
+            Hotkeys.Add("Enable AsciiSpammer?", new CheckBox("Enable AsciiSpammer?", false));
             Hotkeys.AddSeparator();
             Hotkeys.AddGroupLabel("MikuSpammer");
             Hotkeys.Add("MikuPressHotkey", new KeyBind("Press To Spam", false, KeyBind.BindTypes.HoldActive, 'A'));
@@ -93,9 +116,16 @@ namespace Spammer
             Hotkeys.Add("RadiToggleHotkey", new KeyBind("Toggle To Spam", false, KeyBind.BindTypes.PressToggle, 'K'));
             Hotkeys.Add("All Chat On Radi", new CheckBox("Spam in all chat?"));
             Hotkeys.AddSeparator();
+            Hotkeys.AddGroupLabel("AsciiSpammer");
+            Hotkeys.Add("AsciiPressHotkey", new KeyBind("Press to Spam", false, KeyBind.BindTypes.HoldActive, 'A'));
+            Hotkeys.Add("AsciiToggleHotkey", new KeyBind("Toggle To Spam", false, KeyBind.BindTypes.PressToggle, 'k'));
+            Hotkeys.Add("All Chat On Ascii", new CheckBox("Spam in all chat?"));
+            Hotkeys.AddSeparator();
             Hotkeys.AddGroupLabel("EmoteSpammer");
             Hotkeys.Add("EmotePressHotkey", new KeyBind("Press To Spam", false, KeyBind.BindTypes.HoldActive, 'T'));
             Hotkeys.Add("EmoteToggleHotkey", new KeyBind("Toggle To Spam", false, KeyBind.BindTypes.PressToggle, 'L'));
+            
+
 
             Game.OnUpdate += OnUpdate;
         }
@@ -112,19 +142,49 @@ namespace Spammer
 
             {
 
-                if (Hotkeys["EmoteToggleHotkey"].Cast<KeyBind>().CurrentValue && tick == 59 && Hotkeys["Enable EmoteSpammer?"].Cast<CheckBox>().CurrentValue || Hotkeys["EmotePressHotkey"].Cast<KeyBind>().CurrentValue && tick == 59 && Hotkeys["Enable EmoteSpammer?"].Cast<CheckBox>().CurrentValue)
+                if (
+                    Hotkeys["EmoteToggleHotkey"].Cast<KeyBind>().CurrentValue &&
+                    tick == 59 &&
+                    Hotkeys["Enable EmoteSpammer?"].Cast<CheckBox>().CurrentValue
+                    ||
+                    Hotkeys["EmotePressHotkey"].Cast<KeyBind>().CurrentValue && tick == 59 &&
+                    Hotkeys["Enable EmoteSpammer?"].Cast<CheckBox>().CurrentValue
+                    )
+
                 {
                     EmoteSpam();
                 }
 
-                if (Hotkeys["MikuToggleHotkey"].Cast<KeyBind>().CurrentValue && Hotkeys["Enable MikuSpammer?"].Cast<CheckBox>().CurrentValue || Hotkeys["MikuPressHotkey"].Cast<KeyBind>().CurrentValue && Hotkeys["Enable MikuSpammer?"].Cast<CheckBox>().CurrentValue)
+                if (
+                    Hotkeys["MikuToggleHotkey"].Cast<KeyBind>().CurrentValue &&
+                    Hotkeys["Enable MikuSpammer?"].Cast<CheckBox>().CurrentValue 
+                    ||
+                    Hotkeys["MikuPressHotkey"].Cast<KeyBind>().CurrentValue &&
+                    Hotkeys["Enable MikuSpammer?"].Cast<CheckBox>().CurrentValue
+                    )
                 {
                     MikuSpam();
                 }
 
-                if (Hotkeys["RadiToggleHotkey"].Cast<KeyBind>().CurrentValue && Hotkeys["Enable RadiSpammer?"].Cast<CheckBox>().CurrentValue || Hotkeys["RadiPressHotkey"].Cast<KeyBind>().CurrentValue && Hotkeys["Enable RadiSpammer?"].Cast<CheckBox>().CurrentValue)
+                if (
+                    Hotkeys["RadiToggleHotkey"].Cast<KeyBind>().CurrentValue &&
+                    Hotkeys["Enable RadiSpammer?"].Cast<CheckBox>().CurrentValue 
+                    ||
+                    Hotkeys["RadiPressHotkey"].Cast<KeyBind>().CurrentValue &&
+                    Hotkeys["Enable RadiSpammer?"].Cast<CheckBox>().CurrentValue
+                    )
                 {
                     RadiSpam();
+                }
+                if (
+                    Hotkeys["AsciiToggleHotkey"].Cast<KeyBind>().CurrentValue &&
+                    Hotkeys["Enable AsciiSpammer?"].Cast<CheckBox>().CurrentValue
+                    ||
+                    Hotkeys["AsciiPressHotkey"].Cast<KeyBind>().CurrentValue &&
+                    Hotkeys["Enable AsciiSpammer?"].Cast<CheckBox>().CurrentValue
+                    )
+                {
+                    AsciiSpam();
                 }
 
             }
@@ -224,7 +284,6 @@ namespace Spammer
                 case 19:
                     Chat.Say(all + "if (face not fat)");
                     Chat.Say(all + "Body not fat");
-                    Chat.Say(all + " ");
                     break;
                 default:
                     Chat.Say("");
@@ -274,5 +333,42 @@ namespace Spammer
                     break;
             }
         }
+
+
+        private static void AsciiSpam()
+        {
+            if (Hotkeys["All Chat On Ascii"].Cast<CheckBox>().CurrentValue)
+            {
+                all = "/all ";
+            }
+            else all = "";
+
+            switch (Ascii["Ascii Spamming"].Cast<Slider>().CurrentValue)
+            {
+                case 0:
+                    Chat.Say(all + @"
+░░░░░░░░░
+░░░░▄▀▀▀▀▀█▀▄▄▄▄░░░░ 
+░░▄▀▒▓▒▓▓▒▓▒▒▓▒▓▀▄░░ 
+▄▀▒▒▓▒▓▒▒▓▒▓▒▓▓▒▒▓█░
+█▓▒▓▒▓▒▓▓▓░░░░░░▓▓█░ 
+█▓▓▓▓▓▒▓▒░░░░░░░░▓█░ 
+▓▓▓▓▓▒░░░░░░░░░░░░█░ 
+▓▓▓▓░░░░▄▄▄▄░░░▄█▄▀░ 
+░▀▄▓░░▒▀▓▓▒▒░░█▓▒▒░░
+▀▄░░░░░░░░░░░░▀▄▒▒█░ 
+░▀░▀░░░░░▒▒▀▄▄▒▀▒▒█░ 
+░░▀░░░░░░▒▄▄▒▄▄▄▒▒█░ 
+░░░▀▄▄▒▒░░░░▀▀▒▒▄▀░░    
+░░░░░▀█▄▒▒░░░░▒▄▀░░░ 
+░░░░░░░░▀▀█▄▄▄▄▀░░░
+");
+                    break;
+                default:
+                    Chat.Say("");
+                    break;
+            }
+        }
+
     }
 }
